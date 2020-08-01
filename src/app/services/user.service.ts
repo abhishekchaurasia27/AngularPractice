@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { User } from '../models/user';
+import { Injectable, Testability } from '@angular/core';
+import { User, Login } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +9,24 @@ export class UserService {
   private upersons: User[] = [
     {
       id: 1,
-      firstName: 'Durgesh',
-      lastName: 'Pal'
+      firstName: 'Test1',
+      lastName: 'User'
     },
     {
       id: 2,
-      firstName: 'Ankur',
-      lastName: 'Pal'
+      firstName: 'Test2',
+      lastName: 'User'
+    }
+  ];
+
+  private ulogin: Login[] = [
+    {
+      email: 'abc@123',
+      password: '123456'
+    },
+    {
+      email: 'abc@123',
+      password: '123456'
     }
   ];
 
@@ -36,6 +47,14 @@ export class UserService {
   }
   deleteUser(user: User) {
     this.upersons.splice(this.upersons.indexOf(user), 1);
+  }
+  getLoginUsersFromData(): Login[] {
+    return this.ulogin;
+  }
+  checkUser(user: Login) {
+    if (this.ulogin[0].email == user.email && this.ulogin[0].password == user.email){
+      return true
+    }
   }
 
 }
